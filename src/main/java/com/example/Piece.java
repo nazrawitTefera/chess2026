@@ -50,6 +50,8 @@ public class Piece {
     //return a list of every square that is "controlled" by this piece. A square is controlled
     //if the piece capture into it legally.
     public ArrayList<Square> getControlledSquares(Square[][] board, Square start) {
+        ArrayList<Square>controlledSquares= new ArrayList<Square>();
+        controlledSquares.add()
      return null;
     }
     
@@ -61,6 +63,9 @@ public class Piece {
     //please note that your piece must have some sort of logic. Just being able to move to every square on the board is not
     //going to score any points.
     public ArrayList<Square> getLegalMoves(Board b, Square start){
+        ArrayList<Square>LegalMoves= new ArrayList<Square>();
+        Square[][]board=b.getSquareArray();
+        
     	return null;
     }
 }
