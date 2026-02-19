@@ -65,7 +65,21 @@ public class Piece {
     public ArrayList<Square> getLegalMoves(Board b, Square start){
         ArrayList<Square>LegalMoves= new ArrayList<Square>();
         Square[][]board=b.getSquareArray();
-        
-    	return null;
+        int r=start.getRow();
+        int c=start.getCol();
+        int newR=r-1;
+        int newC=c;
+        if(newR>=0&&newR<8&&newC>=0&&newC<8){
+            Square tinySquare= board[newR][newC];
+            if(tinySquare.isOccupied()){
+                if(tinySquare.getOccupyingPiece().getColor()!=this.getColor()){
+                    LegalMoves.add(tinySquare);
+                }
+            }else{
+                                    LegalMoves.add(tinySquare);
+
+            }
+        }
+    	return LegalMoves;
     }
 }
