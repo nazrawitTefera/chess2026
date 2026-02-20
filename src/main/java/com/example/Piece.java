@@ -51,7 +51,7 @@ public class Piece {
     //if the piece capture into it legally.
     public ArrayList<Square> getControlledSquares(Square[][] board, Square start) {
         ArrayList<Square>controlledSquares= new ArrayList<Square>();
-        controlledSquares.add()
+        controlledSquares.add();
      return null;
     }
     
@@ -79,6 +79,28 @@ public class Piece {
                                     LegalMoves.add(tinySquare);
 
             }
+        int newR2=r+1;
+        int newC2=c;
+        if(newR<8&&newR>=0&&newC>=0&&newC<8){
+            Square tinySquare2=board[newR2][newC2];
+            if(tinySquare2.isOccupied()){
+                if(tinySquare2.getOccupyingPiece().getColor()!=this.getColor()){
+                    LegalMoves.add(tinySquare2);
+                }
+            }else{
+                LegalMoves.add(tinySquare2);
+            }
+        }
+        int newR3=r-1;
+        int newC3=c-1;
+        if(newR3<8&&newR3>=0&&newC3>=0&&newC3<8){
+            Square tinySquare3=board[newR3][newC3];
+            if(tinySquare3.isOccupied()){
+                if(tinySquare3.getOccupyingPiece().getColor()!=this.getColor()){
+                    
+                }
+            }
+        }
         }
     	return LegalMoves;
     }
