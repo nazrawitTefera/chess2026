@@ -88,6 +88,7 @@ public class Piece {
         }
         return LegalMoves;
     }
+}
 
 
        
