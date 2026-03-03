@@ -44,7 +44,9 @@ public class Piece {
         
         g.drawImage(this.img, x, y, null);
     }
-    
+    // Pre: b and start not null, start contains this piece, board is valid
+
+    // Post: returns list of squares this piece could capture, inside board, board unchanged
     
     // TO BE IMPLEMENTED!
     //return a list of every square that is "controlled" by this piece. A square is controlled
@@ -72,7 +74,8 @@ public class Piece {
 
 
     }
-    
+// Pre: b and start not null, start contains this piece, board is valid
+// Post: returns list of legal squares for this piece, inside board, no same-color pieces, board unchanged
 
     //TO BE IMPLEMENTED!
     //implement the move function here

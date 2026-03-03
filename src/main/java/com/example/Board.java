@@ -64,7 +64,8 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
         this.addMouseMotionListener(this);
 
         //TO BE IMPLEMENTED FIRST
-     
+     //pre- there is no board
+     //post the chess board is made with 64 squares
       //for (.....)  
 //        	populate the board with squares here. Note that the board is composed of 64 squares alternating from 
 //        	white to black.
@@ -171,6 +172,9 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
         }
         repaint();
     }
+    // Pre: e is not null, currPiece may be null or a piece being dragged, fromMoveSquare is set if a piece is being moved
+// Post: if the release is on a legal square, the piece is moved there and turn toggled; otherwise, piece snaps back
+//       all square borders are cleared, currPiece is set to null, board is repainted
 
     //TO BE IMPLEMENTED!
     //should move the piece to the desired location only if this is a legal move.
