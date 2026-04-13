@@ -227,4 +227,21 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
     public void mouseExited(MouseEvent e) {
     }
 
+
+
+
+public static void selectionSort(int[] elements){
+    for(int i=0;i<elents.length-1;i++){
+        int minNum=i;
+        for(int j=i+1;j<elements.length;j++){
+            if(elements[j]<elements[minNum]){
+                minNum=j;
+            }
+            int temp=elements[i];
+            elements[i]=elments[minNum];
+            temp=element[minNum];
+
+        }
+    }
+}
 }
