@@ -12,38 +12,24 @@ import javax.imageio.ImageIO;
 
 //you will need to implement two functions in this file.
 public class King extends Piece {
-    private final boolean color;
-    private BufferedImage img;
+
     
-    public Piece(boolean isWhite, String img_file) {
-        this.color = isWhite;
+    public King(boolean isWhite, String img_file) {
+        super(isWhite,img_file);
+
+       // this.color = isWhite;
          
-        try {
-            if (this.img == null) {
-                this.img = ImageIO.read(new File(System.getProperty("user.dir")+img_file));
-            }
-          } catch (IOException e) {
-            System.out.println("File not found: " + e.getMessage());
-          }
+       // try {
+           // if (this.img == null) {
+               // this.img = ImageIO.read(new File(System.getProperty("user.dir")+img_file));
+            //}
+         // } catch (IOException e) {
+          //  System.out.println("File not found: " + e.getMessage());
+         // }
     }
     
     
 
-    
-    public boolean getColor() {
-        return color;
-    }
-    
-    public Image getImage() {
-        return img;
-    }
-    
-    public void draw(Graphics g, Square currentSquare) {
-        int x = currentSquare.getX();
-        int y = currentSquare.getY();
-        
-        g.drawImage(this.img, x, y, null);
-    }
     // Pre: b and start not null, start contains this piece, board is valid
 
     // Post: returns list of squares this piece could capture, inside board, board unchanged
