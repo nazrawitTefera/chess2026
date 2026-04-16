@@ -1,3 +1,8 @@
+//nazrawit tefera
+//piece name- king
+//It can move one square in any direction, 
+// including diagonally, and can also perform a special move called castling, where it moves two squares towards a rook.
+
 package com.example;
 import java.awt.Graphics;
 import java.awt.Image;
