@@ -61,7 +61,7 @@ public class King extends Piece {
                }
             }
         }
-        return getLegalMoves(b, start);
+        return num;
 
 
     }
@@ -103,6 +103,8 @@ public class King extends Piece {
         }
         return LegalMoves;
     }
+    public String toString() {
+    return "King";
 }
 
 
