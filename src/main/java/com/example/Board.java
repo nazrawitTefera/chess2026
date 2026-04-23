@@ -98,46 +98,53 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
 	//it's up to you how you wish to arrange your pieces.
     void initializePieces() {
     	
-    	board[0][0].put(new Piece(true, RESOURCES_WKING_PNG));
+    board[7][4].put(new King(true, RESOURCES_WKING_PNG));
+
+    board[0][4].put(new King(false, RESOURCES_BKING_PNG));
+
+    board[7][0].put(new Rook(true, RESOURCES_WROOK_PNG));
+    board[0][0].put(new Rook(false, RESOURCES_BROOK_PNG));
+
+    board[7][7].put(new Rook(true, RESOURCES_WROOK_PNG));
+    board[0][7].put(new Rook(false, RESOURCES_BROOK_PNG));
+
     }
     public boolean isInCheck(boolean kingColor) {
     Square kingSquare = null;
 
-    
     for (Square[] row : board) {
         for (Square s : row) {
             if (s.isOccupied()) {
                 Piece p = s.getOccupyingPiece();
 
-                
                 if (p instanceof King && p.getColor() == kingColor) {
                     kingSquare = s;
                 }
             }
         }
     }
+    if (kingSquare == null) {
+        return false;
+    }
 
-    
     for (Square[] row : board) {
         for (Square s : row) {
             if (s.isOccupied()) {
                 Piece p = s.getOccupyingPiece();
 
-                
                 if (p.getColor() != kingColor) {
 
                     ArrayList<Square> controlled = p.getControlledSquares(this, s);
 
-                    
                     if (controlled.contains(kingSquare)) {
-                        return true;
+                        return true; 
                     }
                 }
             }
         }
     }
 
-    return false;
+    return false; 
 }
 
     public Square[][] getSquareArray() {
@@ -175,7 +182,6 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
                 if(sq == fromMoveSquare)
                 	 sq.setBorder(BorderFactory.createLineBorder(Color.blue));
                 sq.paintComponent(g);
-                System.out.println("Painting square at " + x + ", " + y);   
                 
             }
         }
@@ -220,7 +226,6 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
     @Override
     public void mouseReleased(MouseEvent e) {
 
-    // clear borders
     for (Square[] row : board) {
         for (Square s : row) {
             s.setBorder(null);
@@ -239,7 +244,6 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
 
         if (isInCheck(currPiece.getColor())) {
 
-           
             endSquare.removePiece();
             fromMoveSquare.put(currPiece);
 
@@ -248,7 +252,6 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
             }
 
         } else {
-           
             whiteTurn = !whiteTurn;
         }
     }
@@ -258,6 +261,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
     }
 
     currPiece = null;
+
     repaint();
 }
 
