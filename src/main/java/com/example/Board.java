@@ -99,9 +99,46 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
     void initializePieces() {
     	
     	board[0][0].put(new Piece(true, RESOURCES_WKING_PNG));
-        
-
     }
+    public boolean isInCheck(boolean kingColor) {
+    Square kingSquare = null;
+
+    
+    for (Square[] row : board) {
+        for (Square s : row) {
+            if (s.isOccupied()) {
+                Piece p = s.getOccupyingPiece();
+
+                
+                if (p instanceof King && p.getColor() == kingColor) {
+                    kingSquare = s;
+                }
+            }
+        }
+    }
+
+    
+    for (Square[] row : board) {
+        for (Square s : row) {
+            if (s.isOccupied()) {
+                Piece p = s.getOccupyingPiece();
+
+                
+                if (p.getColor() != kingColor) {
+
+                    ArrayList<Square> controlled = p.getControlledSquares(this, s);
+
+                    
+                    if (controlled.contains(kingSquare)) {
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+
+    return false;
+}
 
     public Square[][] getSquareArray() {
         return this.board;
@@ -195,12 +232,26 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
         endSquare.put(currPiece);
         whiteTurn= !whiteTurn;
         }
-        //using currPiece
+        
         
        
         fromMoveSquare.setDisplay(true);
         currPiece = null;
         repaint();
+         if(fromMoveSquare!= null && currPiece!= null){
+            fromMoveSquare.setDisplay(true);
+            if(currPiece.getLegalMoves(this, fromMoveSquare).contains(endSquare) && whiteTurn == currPiece.getColor()) {
+                Piece captured = endSquare.getOccupyingPiece();
+                endSquare.put(currPiece);
+                fromMoveSquare.removePiece();
+                if(isInCheck(whiteTurn)) {
+                    fromMoveSquare.put(currPiece);
+                    endSquare.put(captured);
+                }else {
+                    whiteTurn = !whiteTurn;
+                }
+            }
+        }
     }
 
     @Override
@@ -230,18 +281,6 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
 
 
 
-public static void selectionSort(int[] elements){
-    for(int i=0;i<elents.length-1;i++){
-        int minNum=i;
-        for(int j=i+1;j<elements.length;j++){
-            if(elements[j]<elements[minNum]){
-                minNum=j;
-            }
-            int temp=elements[i];
-            elements[i]=elments[minNum];
-            temp=element[minNum];
 
-        }
-    }
 }
-}
+
